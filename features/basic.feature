@@ -1,13 +1,13 @@
-Feature: Add and Remove Items to a cart
-    Everybody needs a goPuff basket with snacks
+Feature: Move Rover
+    Move rover forward
 
-    Scenario: Start with an empty basket
-        Given a new user
-        When I don't add anything
-        Then I should have 0 products in my basket
+    Scenario: Start with a rover
+        Given a new rover
+        When it moves
+        Then it should have 2 coordinates
 
     # Scenario: Lets add a coke
-    #     Given a new user
-    #     When I add a coke
-    #     Then I should have 1 products in my basket
-    #     And it better be a coke
+    #     Given a new rover
+    #     When it stops
+    #     Then it should have 2 coordinates
+    #     And they better not be the same
