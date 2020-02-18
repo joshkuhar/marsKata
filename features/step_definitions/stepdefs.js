@@ -10,6 +10,7 @@ When('it moves', function () {
   return true
 })
 
-Then('it should have {int} coordinates', function (count) {
-  assert.strictEqual(2, count)
+Then('it should output {int} coordinates and {int} letter', function (coordinates, letter) {
+  assert.strictEqual(2, coordinates)
+  assert.strictEqual(1, letter)
 })

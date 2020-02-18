@@ -4,7 +4,7 @@ Feature: Move Rover
     Scenario: Start with a rover
         Given a new rover
         When it moves
-        Then it should have 2 coordinates
+        Then it should output 2 coordinates and 1 letter
 
     # Scenario: Lets add a coke
     #     Given a new rover
