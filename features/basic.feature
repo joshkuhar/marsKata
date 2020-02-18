@@ -9,5 +9,5 @@ Feature: Move Rover
     # Scenario: Lets add a coke
     #     Given a new rover
     #     When it stops
-    #     Then it should have 2 coordinates
+    #     Then it should have 2 coordinates and 1 letter
     #     And they better not be the same
