@@ -3,8 +3,9 @@ Feature: Move Rover
 
     Scenario: Start with a rover
         Given a new rover
-        When it moves
-        Then it should output 2 coordinates and 1 letter
+        And it is given instructions
+        Then it should move
+        And it should output 2 coordinates and 1 letter
 
     # Scenario: Lets add a coke
     #     Given a new rover

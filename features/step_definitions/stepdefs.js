@@ -2,11 +2,17 @@ const assert = require('assert')
 const { Given, Then, When } = require('cucumber')
 const { roverFunction } = require('../../rover')
 
+var rover = roverFunction('5 5\n1 2 N\nLMLMLMLMM')
+
 Given('a new rover', function () {
-  roverFunction()
+  return rover
 })
 
-When('it moves', function () {
+When('it is given instructions', function () {
+  assert.strictEqual(typeof rover, 'string')
+})
+
+Then('it should move', function () {
   return true
 })
 

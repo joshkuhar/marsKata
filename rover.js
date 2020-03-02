@@ -1,4 +1,6 @@
-function roverFunction () { }
+function roverFunction (instructions) {
+  return instructions
+}
 
 var exports = module.exports = {}
 
