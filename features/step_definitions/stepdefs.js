@@ -5,11 +5,11 @@ const { Rover, Instructions } = require('../../rover')
 var rover = Rover(Instructions)
 
 Given('a new rover', function () {
-  return rover
+  return Rover
 })
 
 When('it is given instructions', function () {
-  return true
+  return Rover(Instructions)
 })
 
 Then('the instructions should be a string', function () {
