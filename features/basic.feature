@@ -6,6 +6,8 @@ Feature: Move Rover
         And it is given instructions
         Then the instructions should be a string
 
-    Scenario: Return a number
+    Scenario: Return a string
         Given a new rover
-        Then it should output 1 number
+        Then the output should be a string
+        And the string should be 5 chars long
+        And the string should have 2 numbers and 1 letter
