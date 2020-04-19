@@ -1,10 +1,5 @@
 var instructions = '5 5\n1 2 N\nLMLMLMLMM'
 var finalPosition = '1 3 N'
-var currentPosition = {
-  x: 1,
-  y: 3,
-  d: 'N'
-}
 
 function Rover (instructions) {
   if (!instructions) return null
@@ -92,7 +87,6 @@ function calculateNextMove (currentLocation, move) {
   return location
 }
 
-calculateNextMove(currentPosition, 'R')
 var exports = module.exports = {}
 
 exports.Instructions = instructions
