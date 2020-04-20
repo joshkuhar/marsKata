@@ -1,18 +1,15 @@
-var instructions = '5 5\n1 2 N\nLMLMLMLMM'
+var fleetInstructions = '5 5\n1 2 N\nLMLMLMLMM\n3 3 E\nMMRMMRMRRM'
 var finalPosition = '1 3 N'
 
 function Rover (instructions) {
   if (!instructions) return null
-  if (!(typeof instructions === 'string')) return null
+  if (!(typeof instructions.moves === 'string')) return null
 
-  var instructionSequence = 'LMLMLMLMM'
-  var currentPosition = {
-    x: 1,
-    y: 2,
-    d: 'N'
-  }
+  var instructionSequence = instructions.moves
+  var currentPosition = instructions.currentPosition
   var nextPosition = {}
   var historyOfMoves = []
+
   for (var move = 0; move < instructionSequence.length; move++) {
     historyOfMoves.push(currentPosition)
     nextPosition = calculateNextMove(currentPosition, instructionSequence.charAt(move))
@@ -21,6 +18,40 @@ function Rover (instructions) {
   historyOfMoves.push(currentPosition)
   finalPosition = historyOfMoves[instructionSequence.length]
   return finalPosition.x + ' ' + finalPosition.y + ' ' + finalPosition.d
+}
+
+function prepareFleetInstructions (instructions) {
+  var parsedInstructions = instructions.split('\n')
+  var topRight = parsedInstructions.shift()
+
+  var allRoverInstructions = []
+  var roverInstructions = {}
+
+  for (var index = 0; index < parsedInstructions.length; index++) {
+    var roverIndex = index % 2
+    if (roverIndex === 0) roverInstructions.start = parsedInstructions[index]
+    if (roverIndex === 1) {
+      roverInstructions.moves = parsedInstructions[index]
+
+      allRoverInstructions.push({
+        topRight: topRight,
+        start: roverInstructions.start,
+        moves: roverInstructions.moves
+      })
+    }
+  }
+  return allRoverInstructions
+}
+
+function prepareRoverInstructions (instructions) {
+  return {
+    currentPosition: {
+      x: parseInt(instructions.start[0]),
+      y: parseInt(instructions.start[2]),
+      d: instructions.start[4]
+    },
+    moves: instructions.moves
+  }
 }
 
 function changeDirectionPointed (currentDirection, rotate) {
@@ -87,9 +118,16 @@ function calculateNextMove (currentLocation, move) {
   return location
 }
 
+var fleetInstructionsReady = prepareFleetInstructions(fleetInstructions)
+var roverInstructionsReady = prepareRoverInstructions(fleetInstructionsReady[1])
+var roverResult = Rover(roverInstructionsReady)
+console.log(roverResult)
+
 var exports = module.exports = {}
 
-exports.Instructions = instructions
+exports.PrepareFleetInstructions = prepareFleetInstructions
+exports.FleetInstructions = fleetInstructions
+exports.Instructions = prepareRoverInstructions(fleetInstructionsReady[0])
 exports.Final = finalPosition
 exports.Rover = Rover
 exports.ChangeDirectionPointed = changeDirectionPointed
